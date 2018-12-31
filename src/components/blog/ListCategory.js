@@ -19,9 +19,7 @@ class ListCategory extends React.Component {
       super(props);
 
   }
-  returnList(){
 
-  }
  render() {
   const { classes } = this.props;
   const listCategory = this.props.categories.map((category) =>

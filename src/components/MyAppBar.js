@@ -9,6 +9,8 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Drawer from '@material-ui/core/Drawer';
+import LeftBar from '../components/blog/LeftBar'
 
 const styles = theme => ({
   root: {
@@ -69,14 +71,31 @@ const styles = theme => ({
     },
   },
 });
+class MyAppBar extends React.Component{
+  state = {
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  };
 
-function SearchAppBar(props) {
-  const { classes } = props;
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
+  };
+
+render(){
+  const { classes } = this.props;
+  const sideList = (
+      <LeftBar/>
+    );
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer"
+          onClick={this.toggleDrawer('left', true)}>
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -97,12 +116,23 @@ function SearchAppBar(props) {
           </div>
         </Toolbar>
       </AppBar>
-    </div>
+
+    <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('left', false)}
+            onKeyDown={this.toggleDrawer('left', false)}
+          >
+            {sideList}
+          </div>
+        </Drawer>
+        </div>
   );
 }
-
-SearchAppBar.propTypes = {
+}
+MyAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SearchAppBar);
+export default withStyles(styles)(MyAppBar);

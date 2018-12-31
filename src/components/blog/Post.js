@@ -16,6 +16,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   card: {
@@ -46,6 +47,16 @@ const styles = theme => ({
   },
   avatar: {
     backgroundColor: red[500],
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  divButton: {
+    textAlign: 'right',
+    width: '100%'
   },
 });
 
@@ -94,6 +105,11 @@ const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'num
           <IconButton aria-label="Share">
             <ShareIcon />
           </IconButton>
+          <div className={classes.divButton}>
+          <Button variant="outlined" href="#outlined-buttons" className={classes.button}>
+        Ver más
+      </Button>
+      </div>
         </CardActions>
 
       </Card>

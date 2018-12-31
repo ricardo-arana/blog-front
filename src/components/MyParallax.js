@@ -7,7 +7,7 @@ export default class MyParallax extends React.Component{
     <div>
             {/*-----dynamic blur-----*/}
             <Parallax
-                blur={{ min: -15, max: 15 }}
+                blur={5}
                 bgImage={process.env.PUBLIC_URL + '/images/bg-home.jpg'}
                 bgImageAlt="the dog"
                 strength={600}
